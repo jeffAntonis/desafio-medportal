@@ -17,7 +17,7 @@ export const ImageBackground = styled.ImageBackground.attrs({
 `;
 
 export const Content = styled.View`
-  background-color: #fff;
+  background-color: #f2f4f9;
   top: 200px;
   left: 0px;
   right: 0px;
