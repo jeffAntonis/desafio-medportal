@@ -8,7 +8,7 @@ import { UsersModule } from './users/users.module';
 import { User } from './entitys/user.entity';
 
 @Module({
-  imports: [ TypeOrmModule.forRoot({
+  imports: [TypeOrmModule.forRoot({
     type: 'mysql',
     host: 'localhost',
     port: 3306,
@@ -17,8 +17,8 @@ import { User } from './entitys/user.entity';
     database: 'medportal',
     entities: [User],
     synchronize: true,
-  }),AuthModule, UsersModule],
+  }), AuthModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

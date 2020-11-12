@@ -9,22 +9,27 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async create(userData: User): Promise<User> {
     return await this.usersRepository.save(userData);
   }
 
   findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+    return this.usersRepository.find({
+      select: ['id', 'name', 'email']
+    });
   }
 
   findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id);
+    return this.usersRepository.findOne(id, {
+      select: ['id', 'name', 'email']
+    });
   }
 
   findByEmail(email: string): Promise<User> {
     return this.usersRepository.findOne({
+      select: ['id', 'name', 'email'],
       where: {
         email
       }
