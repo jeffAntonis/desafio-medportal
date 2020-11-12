@@ -5,7 +5,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+
+//ENTITYS
 import { User } from './entitys/user.entity';
+import { Group } from './entitys/group.entity';
+import { GroupsModule } from './groups/groups.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,9 +19,9 @@ import { User } from './entitys/user.entity';
     username: 'root',
     password: '',
     database: 'medportal',
-    entities: [User],
+    entities: [User, Group],
     synchronize: true,
-  }), AuthModule, UsersModule],
+  }), AuthModule, UsersModule, GroupsModule],
   controllers: [AppController],
   providers: [AppService],
 })
