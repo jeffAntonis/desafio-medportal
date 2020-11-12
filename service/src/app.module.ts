@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OneSignalModule as OneSignalModuleLib } from "onesignal-api-client-nest";
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -10,6 +11,9 @@ import { UsersModule } from './users/users.module';
 import { User } from './entitys/user.entity';
 import { Group } from './entitys/group.entity';
 import { GroupsModule } from './groups/groups.module';
+import { OnesignalController } from './onesignal/onesignal.controller';
+import { OnesignalService } from './onesignal/onesignal.service';
+import { OnesignalModule } from './onesignal/onesignal.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -21,8 +25,12 @@ import { GroupsModule } from './groups/groups.module';
     database: 'medportal',
     entities: [User, Group],
     synchronize: true,
-  }), AuthModule, UsersModule, GroupsModule],
-  controllers: [AppController],
-  providers: [AppService],
+  }),
+  OneSignalModuleLib.forRoot({
+    appId: '230b5cf4-6dbc-4ab0-8b33-3cc56469976f',
+    restApiKey: 'OTMzOTMwOGEtOWM4YS00YjI1LWFmYTItNzJiOTZhMTE0ZTRj',
+  }), AuthModule, UsersModule, GroupsModule, OnesignalModule],
+  controllers: [AppController, OnesignalController],
+  providers: [AppService, OnesignalService],
 })
 export class AppModule { }

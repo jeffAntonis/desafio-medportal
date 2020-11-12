@@ -33,11 +33,16 @@ const onOpened = (openResult: any) => {
   console.log('isActive: ', openResult.notification.isAppInFocus);
 };
 
+const onIds = (device: any) => {
+  console.log(device);
+};
+
 const App = () => {
   useEffect(() => {
     OneSignal.init('230b5cf4-6dbc-4ab0-8b33-3cc56469976f');
     OneSignal.addEventListener('received', onReceived);
     OneSignal.addEventListener('opened', onOpened);
+    OneSignal.addEventListener('ids', onIds);
   }, []);
 
   return (
