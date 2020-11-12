@@ -29,7 +29,7 @@ export class UsersService {
 
   findByEmail(email: string): Promise<User> {
     return this.usersRepository.findOne({
-      select: ['id', 'name', 'email'],
+      select: ['id', 'name', 'email', 'password'],
       where: {
         email
       }
