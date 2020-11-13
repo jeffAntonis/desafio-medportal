@@ -16,6 +16,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  app_id: string;
+
   @ManyToMany(type => Group)
   @JoinTable()
   groups: Group[];

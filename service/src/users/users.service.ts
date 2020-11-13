@@ -39,4 +39,10 @@ export class UsersService {
   async remove(id: string): Promise<void> {
     await this.usersRepository.delete(id);
   }
+
+  async changeAppId(id: string, appId: string): Promise<User> {
+    const user = await this.usersRepository.findOne(id);
+    user.app_id = appId;
+    return await this.usersRepository.save(user);
+  }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 
 import { UsersService } from "./users.service";
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -14,4 +14,11 @@ export class UsersController {
   findAll() {
     return this.usersService.findAll();
   }
+
+  @Post('/change-app-id')
+  changeAppId(@Request() req) {
+    const { userId, appId } = req.body;
+    return this.usersService.changeAppId(userId, appId);
+  }
+
 }
