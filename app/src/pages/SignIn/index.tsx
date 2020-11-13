@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   Container,
@@ -15,13 +16,30 @@ import {
 
 import bgw from '../../assets/bgw.jpg';
 
-const SignIn: React.FC = () => {
+import api from '../../services/api';
+
+const SignIn: React.FC = (props: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const sigIn = async () => {
     if (!email || !password) {
       Alert.alert('', 'Informe seus dados de acesso para continuar');
+      return;
+    }
+
+    try {
+      const { data } = await api.post('/auth/login', {
+        email,
+        password,
+      });
+
+      console.log(data);
+      await AsyncStorage.setItem('@storage_Key', data.access_token);
+      props.navigation.navigate('stackApp');
+    } catch (error) {
+      console.log(error.response);
+      Alert.alert('', 'Verifique suas credenciais e tente novamente');
     }
   };
 

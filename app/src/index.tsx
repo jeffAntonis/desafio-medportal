@@ -49,7 +49,7 @@ const App = () => {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#202020" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="stackApp" headerMode="none">
+        <Stack.Navigator initialRouteName="stackAuth" headerMode="none">
           <Stack.Screen name="stackAuth" component={StackAuth} />
           <Stack.Screen name="stackApp" component={StackApp} />
         </Stack.Navigator>
