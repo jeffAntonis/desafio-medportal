@@ -2,8 +2,11 @@ import { Module, HttpModule } from '@nestjs/common';
 import { OnesignalService } from './onesignal.service';
 import { OnesignalController } from './onesignal.controller';
 
+import { GroupsModule } from "../groups/groups.module";
+
 @Module({
   imports: [
+    GroupsModule,
     HttpModule.registerAsync({
       useFactory: () => ({
         timeout: 5000,

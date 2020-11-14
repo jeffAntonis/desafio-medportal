@@ -9,7 +9,7 @@ export class OnesignalController {
 
   @Post('/send-message')
   async create(@Request() req) {
-    const { message } = req.body
-    return await this.oneSignalService.createNotification(message);
+    const { message, groupId } = req.body
+    return await this.oneSignalService.createNotification(message, groupId);
   }
 }

@@ -51,6 +51,7 @@ const onOpened = (openResult: any) => {
 };
 
 const onIds = async (device: any) => {
+  console.log(device);
   await AsyncStorage.setItem('userId', device.userId);
 };
 

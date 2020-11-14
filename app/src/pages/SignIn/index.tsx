@@ -44,9 +44,11 @@ const SignIn: React.FC = (props: any) => {
 
       const userId = await AsyncStorage.getItem('userId');
 
+      console.log(userId, tokenObj?.id);
+
       await api.post('users/change-app-id', {
         userId: tokenObj?.id,
-        appId: userId.id,
+        appId: userId,
       });
 
       console.log(data);
