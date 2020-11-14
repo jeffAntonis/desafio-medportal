@@ -20,7 +20,9 @@ export class GroupsService {
   }
 
   findAll(): Promise<Group[]> {
-    return this.groupsRepository.find();
+    return this.groupsRepository.find({
+      relations: ['users']
+    });
   }
 
   findOne(id: string): Promise<Group> {

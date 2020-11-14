@@ -4,8 +4,8 @@ export const Container = styled.View`
   flex: 1;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 47px;
   background-color: #2b398f;
+  padding-top: 47px;
 `;
 
 export const ImageBackground = styled.ImageBackground.attrs({

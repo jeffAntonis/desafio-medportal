@@ -22,45 +22,29 @@ import logoWhite from '../../assets/logo-white.png';
 
 import api from '../../services/api';
 
-const SignIn: React.FC = (props: any) => {
+const SigUp: React.FC = (props: any) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const sigIn = async () => {
-    if (!email || !password) {
+  const sigUp = async () => {
+    if (!email || !password || !name) {
       Alert.alert('', 'Informe seus dados de acesso para continuar');
       return;
     }
 
     try {
-      const { data } = await api.post('/auth/login', {
+      await api.post('/auth/register', {
+        name,
         email,
         password,
       });
+      Alert.alert('', 'Cadastro realizado com sucesso');
 
-      const { access_token } = data;
-
-      const tokenObj = JSON.parse(atob(access_token.split('.')[1]));
-
-      const userId = await AsyncStorage.getItem('userId');
-
-      await api.post('users/change-app-id', {
-        userId: tokenObj?.id,
-        appId: userId.id,
-      });
-
-      console.log(data);
-      await AsyncStorage.setItem('access_token', access_token);
-      // props.navigation.navigate('stackApp');
-      await props.navigation.dispatch(
-        CommonActions.reset({
-          index: 1,
-          routes: [{ name: 'stackApp' }],
-        })
-      );
+      props.navigation.goBack();
     } catch (error) {
       console.log(error.response);
-      Alert.alert('', 'Verifique suas credenciais e tente novamente');
+      Alert.alert('', 'Tivemos um problema, tente novamente');
     }
   };
 
@@ -68,11 +52,19 @@ const SignIn: React.FC = (props: any) => {
     <Container>
       <Image source={logoWhite} />
       <Content>
-        <Title>Bem vindo(a)!</Title>
+        <Title>Cadastro</Title>
 
-        <SubTitle>Por favor entre</SubTitle>
+        <SubTitle>Preencha os dados abaixo</SubTitle>
 
         <Form>
+          <InputContainer>
+            <InputContent
+              placeholder="Name"
+              value={name}
+              onChangeText={(text) => setName(text)}
+            />
+          </InputContainer>
+
           <InputContainer>
             <InputContent
               keyboardType="email-address"
@@ -92,13 +84,7 @@ const SignIn: React.FC = (props: any) => {
             />
           </InputContainer>
 
-          <Button onPress={sigIn}>
-            <SubTitle style={{ marginTop: 0 }} color="#FFF">
-              Entrar
-            </SubTitle>
-          </Button>
-
-          <Button onPress={() => props.navigation.navigate('signUp')}>
+          <Button onPress={sigUp}>
             <SubTitle style={{ marginTop: 0 }} color="#FFF">
               Cadastrar
             </SubTitle>
@@ -109,4 +95,4 @@ const SignIn: React.FC = (props: any) => {
   );
 };
 
-export default SignIn;
+export default SigUp;

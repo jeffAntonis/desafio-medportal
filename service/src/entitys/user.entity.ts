@@ -16,7 +16,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ default: '' })
   app_id: string;
 
   @ManyToMany(type => Group)

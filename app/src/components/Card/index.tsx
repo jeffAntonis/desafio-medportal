@@ -4,14 +4,25 @@ import { Container, Content, Title, SubTitle } from './styles';
 
 import IconButton from '../IconButton';
 
-const Card: React.FC = () => {
+const Card: React.FC<{
+  data: any;
+  navigation: any;
+}> = ({ data, navigation }) => {
   return (
     <Container>
       <Content>
-        <Title>Team #4</Title>
-        <SubTitle>People (4)</SubTitle>
+        <Title>{data.name}</Title>
+        <SubTitle>Pessoas {`(${data.users.length})`}</SubTitle>
       </Content>
-      <IconButton iconName="arrow-right" iconSize={20} />
+      <IconButton
+        iconName="arrow-right"
+        iconSize={20}
+        onClick={() =>
+          navigation.navigate('groupDetails', {
+            cardId: data.id,
+          })
+        }
+      />
     </Container>
   );
 };

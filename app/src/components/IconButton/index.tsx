@@ -18,7 +18,7 @@ const IconButton: React.FC<ButtonInterface> = ({
   iconSize = '',
 }: ButtonInterface) => {
   return (
-    <Container>
+    <Container onPress={onClick}>
       <Icon name={iconName} size={iconSize} />
     </Container>
   );

@@ -27,4 +27,6 @@ export class GroupsController {
     return await this.groupsService.relationUser(userId, groupId);
   }
 
+
+
 }
