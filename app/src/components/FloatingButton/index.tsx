@@ -10,12 +10,12 @@ interface ButtonInterface {
   iconSize?: number;
 }
 
-const IconButton: React.FC<ButtonInterface> = ({
-  onClick = null,
-  loading = false,
+const FloatingButton: React.FC<ButtonInterface> = ({
+  onClick,
+  loading,
   iconName = '',
   iconSize = '',
-}: ButtonInterface) => {
+}) => {
   return (
     <Container onPress={onClick}>
       <Icon name={iconName} size={iconSize} color="#FFF" />
@@ -23,4 +23,4 @@ const IconButton: React.FC<ButtonInterface> = ({
   );
 };
 
-export default IconButton;
+export default FloatingButton;

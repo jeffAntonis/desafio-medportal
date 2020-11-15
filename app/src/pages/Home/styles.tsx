@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #f2f4f9;
+  background-color: #2b398f;
 `;
 
 export const Header = styled.View`
@@ -17,6 +17,7 @@ export const Header = styled.View`
 export const Title = styled.Text`
   font-size: 30px;
   font-weight: bold;
+  color: #fff;
 `;
 
 export const Content = styled.FlatList.attrs({
@@ -81,7 +82,7 @@ export const Button = styled.TouchableOpacity`
 export const ContentIcons = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  width: 25%;
+  width: 35%;
 `;
 
 export const ButtonText = styled.Text`

@@ -12,6 +12,9 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import GroupDetails from './pages/GroupDetails';
+import Menu from './pages/Menu';
+import CreateGroup from './pages/CreateGroup';
+import SendMessage from './pages/SendMessage';
 
 import { decode, encode } from 'base-64';
 
@@ -37,6 +40,9 @@ const StackApp = () => (
   <Stack.Navigator headerMode="none">
     <Stack.Screen name="home" component={Home} />
     <Stack.Screen name="groupDetails" component={GroupDetails} />
+    <Stack.Screen name="menu" component={Menu} />
+    <Stack.Screen name="createGroup" component={CreateGroup} />
+    <Stack.Screen name="sendMessage" component={SendMessage} />
   </Stack.Navigator>
 );
 

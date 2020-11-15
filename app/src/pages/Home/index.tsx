@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CommonActions } from '@react-navigation/native';
 
@@ -8,11 +8,6 @@ import {
   Content,
   Header,
   Title,
-  ModalContainer,
-  ModalContent,
-  InputContainer,
-  InputContent,
-  Button,
   ButtonText,
   ContentIcons,
 } from './styles';
@@ -25,8 +20,6 @@ import api from '../../services/api';
 const Home: React.FC = (props: any) => {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [groupName, setGroupName] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     getGroups();
@@ -44,28 +37,20 @@ const Home: React.FC = (props: any) => {
     }
   };
 
-  const createGroup = async () => {
-    try {
-      await api.post('/groups', {
-        name: groupName,
-      });
-      setGroupName('');
-      setModalVisible(false);
-      getGroups();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <Container>
       <Header>
         <Title>Grupos</Title>
         <ContentIcons>
           <IconButton
+            iconName="rotate-cw"
+            iconSize={25}
+            onClick={() => getGroups()}
+          />
+          <IconButton
             iconName="plus"
             iconSize={25}
-            onClick={() => setModalVisible(true)}
+            onClick={() => props.navigation.navigate('createGroup')}
           />
           <IconButton
             iconName="log-out"
@@ -85,6 +70,10 @@ const Home: React.FC = (props: any) => {
 
       {loading && <ActivityIndicator size="small" color="#000" />}
 
+      {!loading && groups.length === 0 && (
+        <ButtonText>Nenhum grupo encontrado</ButtonText>
+      )}
+
       <Content
         data={groups}
         keyExtractor={(item: any) => item.id.toString()}
@@ -92,29 +81,6 @@ const Home: React.FC = (props: any) => {
           <Card navigation={props.navigation} data={item} />
         )}
       />
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <ModalContainer>
-          <ModalContent>
-            <Title>Criar Grupo</Title>
-            <InputContainer>
-              <InputContent
-                placeholder="Nome do Grupo"
-                value={groupName}
-                onChangeText={(text) => setGroupName(text)}
-              />
-            </InputContainer>
-
-            <Button onPress={createGroup}>
-              <ButtonText>Criar</ButtonText>
-            </Button>
-          </ModalContent>
-        </ModalContainer>
-      </Modal>
     </Container>
   );
 };

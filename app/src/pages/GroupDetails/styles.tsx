@@ -26,11 +26,10 @@ export const ContentUsers = styled.FlatList.attrs({
     padding: 8,
   },
 })`
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 100px;
   padding: 10px;
   flex: 1;
-  width: 90%;
+  width: 100%;
   background-color: #fff;
   border-radius: 20px;
   padding: 35px;
@@ -42,6 +41,8 @@ export const ContentUsers = styled.FlatList.attrs({
   shadow-opacity: 0.25;
   shadow-radius: 3.84;
   elevation: 5;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
 `;
 
 export const Title = styled.Text`
@@ -75,8 +76,8 @@ export const ButtonText = styled.Text`
 `;
 
 export const ImageContent = styled.View`
-  width: 40%;
-  height: 30%;
+  width: 35%;
+  height: 100%;
   justify-content: center;
   align-items: center;
   background-color: #fff;
@@ -108,43 +109,6 @@ export const Description = styled.Text`
   font-size: 18px;
   color: #5d5d5d;
 `;
-
-export const ModalContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ModalContent = styled.View`
-  width: 80%;
-  margin: 20px;
-  background-color: white;
-  border-radius: 20px;
-  padding: 35px;
-  align-items: center;
-  shadow-color: #000;
-  shadow-offset: {
-    width: 0;
-    height: 2;
-  }
-  shadow-opacity: 0.25;
-  shadow-radius: 3.84;
-  elevation: 5;
-`;
-
-export const InputContainer = styled.View`
-  width: 90%;
-  background-color: #f3f3f3;
-  border-radius: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-width: 2px;
-  border-color: #f3f3f3;
-`;
-
-export const InputContent = styled.TextInput``;
 
 export const ContentIcons = styled.View`
   flex-direction: row;
