@@ -68,19 +68,21 @@ const Home: React.FC = (props: any) => {
         </ContentIcons>
       </Header>
 
-      {loading && <ActivityIndicator size="small" color="#000" />}
+      {loading && <ActivityIndicator size="large" color="#FFF" />}
 
       {!loading && groups.length === 0 && (
         <ButtonText>Nenhum grupo encontrado</ButtonText>
       )}
 
-      <Content
-        data={groups}
-        keyExtractor={(item: any) => item.id.toString()}
-        renderItem={({ item }) => (
-          <Card navigation={props.navigation} data={item} />
-        )}
-      />
+      {!loading && (
+        <Content
+          data={groups}
+          keyExtractor={(item: any) => item.id.toString()}
+          renderItem={({ item }) => (
+            <Card navigation={props.navigation} data={item} />
+          )}
+        />
+      )}
     </Container>
   );
 };

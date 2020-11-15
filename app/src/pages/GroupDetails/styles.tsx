@@ -46,9 +46,9 @@ export const ContentUsers = styled.FlatList.attrs({
 `;
 
 export const Title = styled.Text`
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 export const SubTitle = styled.Text`
