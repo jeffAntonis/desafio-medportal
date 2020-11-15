@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View } from 'react-native';
+import { CommonActions } from '@react-navigation/native';
 
 const Splash: React.FC = (props: any) => {
   const initAuthToken = async () => {
@@ -9,9 +10,19 @@ const Splash: React.FC = (props: any) => {
     if (authData !== null) {
       console.log(authData);
 
-      props.navigation.navigate('stackApp');
+      await props.navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [{ name: 'stackApp' }],
+        })
+      );
     } else {
-      props.navigation.navigate('stackAuth');
+      await props.navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [{ name: 'stackAuth' }],
+        })
+      );
     }
   };
 

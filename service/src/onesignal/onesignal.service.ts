@@ -18,12 +18,12 @@ export class OnesignalService {
 
     try {
       const response = await this.httpService.post('https://onesignal.com/api/v1/notifications', {
-        'app_id': '230b5cf4-6dbc-4ab0-8b33-3cc56469976f',
+        'app_id': process.env.ONE_SIGNAL_APP_ID,
         'contents': { en: message },
         'include_player_ids': appIds
       }, {
         headers: {
-          "authorization": "Basic OTMzOTMwOGEtOWM4YS00YjI1LWFmYTItNzJiOTZhMTE0ZTRj",
+          "authorization": `Basic ${process.env.ONE_SIGNAL_TOKEN}`,
           "content-type": "application/json"
         }
       }).toPromise();
